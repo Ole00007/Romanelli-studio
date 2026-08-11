@@ -1,0 +1,25 @@
+{
+  "name": "romanelli-studio",
+  "version": "1.0.0",
+  "description": "Romanelli studio",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npx wrangler deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ole00007/Romanelli-studio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ole00007/Romanelli-studio/issues"
+  },
+  "homepage": "https://github.com/Ole00007/Romanelli-studio#readme",
+  "devDependencies": {
+    "wrangler": "^4.120.1"
+  }
+}
