@@ -1,6 +1,8 @@
 name = "romanelli-studio"
 compatibility_date = "2026-08-11"
+main = "src/index.js"
 
-# Cloudflare Pages static site
-# All HTML, CSS, and assets are in the project root.
-# No build step needed — files deploy as-is.
+# Static assets served alongside the Worker
+[assets]
+directory = "."
+binding = "ASSETS"
