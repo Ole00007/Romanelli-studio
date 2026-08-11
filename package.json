@@ -4,7 +4,7 @@
   "description": "Romanelli studio",
   "main": "index.js",
   "scripts": {
-    "deploy": "npx wrangler pages deploy . --project-name=romanelli-studio",
+    "deploy": "npx wrangler deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
