@@ -78,11 +78,15 @@ a { color: var(--navy); transition: color .2s; }
 img,svg{display:block;max-width:100%;}
 .container{max-width:1040px;margin:0 auto;padding:0 32px;}
 
-/* ===== Scroll animations ===== */
+/* ===== Scroll animations (progressive enhancement) ===== */
 .animate-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.animate-on-scroll.js-hidden {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity .6s ease, transform .6s ease;
 }
 .animate-on-scroll.visible {
   opacity: 1;
@@ -810,10 +814,10 @@ body:not([data-lang="en"]) .lang-toggle .label-it { display: inline; }
     <div class="sec-label"><span lang="it">Galleria</span><span lang="en">Gallery</span></div>
     <h2 class="sec-title" style="max-width:100%"><span lang="it">Lo Studio in immagini</span><span lang="en">The Firm in pictures</span></h2>
     <div class="img-grid">
-      <figure class="img-reveal img-glow"><img src="https://v3b.fal.media/files/b/0aa5a96b/zMBqW-AdwaRI59P4xGJKM_qCKpT1Cb.png" alt="Studio Legale - Interno"><figcaption lang="it">Studio Legale · Interno</figcaption><figcaption lang="en">Law Firm · Interior</figcaption></figure>
-      <figure class="img-reveal delay-1 img-glow"><img src="https://v3b.fal.media/files/b/0aa5a96f/XBvLxh8W-sNI1E4FWnuNf_Ni5XVsps.png" alt="Sala riunioni"><figcaption lang="it">Sala Riunioni</figcaption><figcaption lang="en">Conference Room</figcaption></figure>
-      <figure class="img-reveal delay-2 img-glow"><img src="https://v3b.fal.media/files/b/0aa5a970/c9hMf5KCHv7LhVOOFZ5_4_XRKKtSje.png" alt="Ingresso Studio"><figcaption lang="it">Ingresso Studio</figcaption><figcaption lang="en">Firm Entrance</figcaption></figure>
-      <figure class="img-reveal delay-3 img-glow"><img src="https://v3b.fal.media/files/b/0aa5a96d/szCLvrnm7oeGR85fLKEsr_J3B2PGin.png" alt="Bilancia della giustizia"><figcaption lang="it">Bilancia della Giustizia</figcaption><figcaption lang="en">Scales of Justice</figcaption></figure>
+      <figure><img src="artefacts/romanelli-studio-interno.png" alt="Studio Legale - Interno" style="width:100%;display:block;border-radius:var(--radius);"><figcaption lang="it">Studio Legale · Interno</figcaption><figcaption lang="en">Law Firm · Interior</figcaption></figure>
+      <figure><img src="artefacts/romanelli-sala-riunioni.png" alt="Sala riunioni" style="width:100%;display:block;border-radius:var(--radius);"><figcaption lang="it">Sala Riunioni</figcaption><figcaption lang="en">Conference Room</figcaption></figure>
+      <figure><img src="artefacts/romanelli-ingresso-studio.png" alt="Ingresso Studio" style="width:100%;display:block;border-radius:var(--radius);"><figcaption lang="it">Ingresso Studio</figcaption><figcaption lang="en">Firm Entrance</figcaption></figure>
+      <figure><img src="artefacts/romanelli-bilancia-giustizia.png" alt="Bilancia della giustizia" style="width:100%;display:block;border-radius:var(--radius);"><figcaption lang="it">Bilancia della Giustizia</figcaption><figcaption lang="en">Scales of Justice</figcaption></figure>
     </div>
   </div>
 </section>
@@ -1111,9 +1115,13 @@ body:not([data-lang="en"]) .lang-toggle .label-it { display: inline; }
 
 <script>
 /* ===== Scroll animation ===== */
+// Initially hide elements for JS-powered reveal
+document.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.add('js-hidden'));
+
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
+      entry.target.classList.remove('js-hidden');
       entry.target.classList.add('visible');
     }
   });
